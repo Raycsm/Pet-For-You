@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Text } from 'react-native-paper';
 
-
-
 export default function Login({navigation}) {
 
     const [email, setEmail] = useState("");
@@ -16,7 +14,7 @@ export default function Login({navigation}) {
  
     return (
         <View>
-            <Image style={styles.logo} source={require('C:/Rayane/Mobile Pet for you/PetForyou/assets/logo.png')}/>
+            <Image style={styles.logo} source={require('../../assets/logo.png')}/>
             
             <Text style={styles.titulo}>
                 Recuperar Senha

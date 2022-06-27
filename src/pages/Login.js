@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Text } from 'react-native-paper';
 
-
 export default function Login({navigation}) {
 
     const [email, setEmail] = useState("");
@@ -18,7 +17,7 @@ export default function Login({navigation}) {
  
     return (
         <View style={styles.bg}>
-            <Image style={styles.logo} source={require('C:/Rayane/Mobile Pet for you/PetForyou/assets/logo.png')}/>
+            <Image style={styles.logo} source={require('../../assets/logo.png')}/>
           
             <TextInput
               style={styles.input}
@@ -80,7 +79,7 @@ export default function Login({navigation}) {
               </Text>
             </TouchableOpacity>
 
-            <Image style={styles.pets} source={require('C:/Rayane/Mobile Pet for you/PetForyou/assets/pets.png')}/>
+            <Image style={styles.pets} source={require('../../assets/pets.png')} />
         </View>
     );
   };
@@ -118,7 +117,6 @@ const styles = StyleSheet.create({
     width:310, 
     alignSelf: 'center',
     marginBottom: 30,
-    width: '80%',
     padding: 8,
     textAlign:'center',
     borderRadius: 40,
