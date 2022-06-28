@@ -1,14 +1,25 @@
-import { Text, StyleSheet, View } from 'react-native'
+import { Text, StyleSheet, SafeAreaView, View, StatusBar, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
 
-export default class TelaInicial extends Component {
-  render() {
-    return (
-      <View>
-        <Text>TelaLogin</Text>
-      </View>
-    )
-  }
-}
+export default function TelaInicial({ navigation }) {
+  const StatusBarHeight = StatusBar.currentHeight; //pega altura da statusbar e coloca como margintop
 
-const styles = StyleSheet.create({})
+  return (
+    <SafeAreaView style={{ flex: 1, marginTop: StatusBarHeight}}>
+      <View style={{ flex: 1, paddingHorizontal: 20 }}>
+        <Text style={{ fontSize: 20 }}>Tela Inicial</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("MeuPerfil")}>
+            <Text style={{ fontSize: 18, marginTop: 10, color: 'orange'}}>
+                Meu Perfil
+            </Text>
+          </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  }
+})
