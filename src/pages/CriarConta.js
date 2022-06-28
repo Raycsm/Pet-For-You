@@ -3,6 +3,7 @@ import { ScrollView } from "react-native";
 import { Button, ToggleButton, TextInput, List } from "react-native-paper";
 import { View, StyleSheet, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import Logo from "../../assets/logo.png"
 
 export default function CriarConta({navigation}) {
 
@@ -27,7 +28,7 @@ export default function CriarConta({navigation}) {
 
 	return (
 		<View style={container.conteudo}>
-			<Image style={container.logo} source={require('C:/Rayane/Mobile Pet for you/PetForyou/assets/logo.png')}/>
+			<Image style={container.logo} source={Logo}/>
 			<ScrollView>
 					<List.Accordion style ={container.tipopessoa}
 						title={tipopessoa === "" ? "Tipo de pessoa" : tipopessoa}

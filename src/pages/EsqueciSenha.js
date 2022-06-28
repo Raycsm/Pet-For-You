@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Text } from 'react-native-paper';
-
+import Logo from "../../assets/logo.png"
 
 
 export default function Login({navigation}) {
@@ -16,7 +16,7 @@ export default function Login({navigation}) {
  
     return (
         <View>
-            <Image style={styles.logo} source={require('C:/Rayane/Mobile Pet for you/PetForyou/assets/logo.png')}/>
+            <Image style={styles.logo} source={Logo}/>
             
             <Text style={styles.titulo}>
                 Recuperar Senha

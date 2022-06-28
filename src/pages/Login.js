@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Text } from 'react-native-paper';
+import Logo from "../../assets/logo.png"
+import PetsImg from "../../assets/pets.png"
 
 
 export default function Login({navigation}) {
@@ -18,7 +20,7 @@ export default function Login({navigation}) {
  
     return (
         <View style={styles.bg}>
-            <Image style={styles.logo} source={require('C:/Rayane/Mobile Pet for you/PetForyou/assets/logo.png')}/>
+            <Image style={styles.logo} source={Logo}/>
           
             <TextInput
               style={styles.input}
@@ -80,7 +82,7 @@ export default function Login({navigation}) {
               </Text>
             </TouchableOpacity>
 
-            <Image style={styles.pets} source={require('C:/Rayane/Mobile Pet for you/PetForyou/assets/pets.png')}/>
+            <Image style={styles.pets} source={PetsImg}/>
         </View>
     );
   };
