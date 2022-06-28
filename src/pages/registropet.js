@@ -5,6 +5,7 @@ import { View, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 /* import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'; */
+import axios from "axios";
 
 function RegistroPet({ navigation }) {
 
@@ -288,7 +289,34 @@ function RegistroPet({ navigation }) {
 					onChangeText={descricao => setDescricao(descricao)} />
 				<Button
 					style={container.botao}
-					mode="contained">
+					mode="contained"
+					onPress={() => {
+						if (nome === "" || raca === "" || peso === "" || porte === "" || descricao === "" || telefone === "" || email === "") {
+							Alert.alert("Preencha todos os campos!");
+						} else {
+							axios.post("http://localhost:3000/pet", {
+								nome: nome,
+								raca: raca,
+								peso: peso,
+								porte: porte,
+								vacinado: vacinado,
+								castrado: castrado,
+								telefone: telefone,
+								email: email,
+								descricao: descricao,
+								idadeanos: anos,
+								idademeses: meses,
+								localizacao: localizacao
+							}).then(() => {
+								alert("Pet cadastrado com sucesso!");
+								navigation.navigate("Home");
+							}).catch(() => {
+								alert("Erro ao cadastrar pet!");
+							}
+							);
+						}
+					}
+					}>
 					Registrar
 				</Button>
 			</ScrollView>
