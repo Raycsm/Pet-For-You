@@ -2,6 +2,7 @@ import * as React from "react";
 import { ScrollView } from "react-native";
 import { Button, ToggleButton, TextInput, List } from "react-native-paper";
 import { View, StyleSheet, Image } from "react-native";
+import axios from "axios";
 
 export default function CriarConta({ navigation }) {
 
@@ -38,15 +39,15 @@ export default function CriarConta({ navigation }) {
 					<List.Item style={container.itens}
 						title="Pessoa Física"
 						left={props => <List.Icon {...props} icon="account" />}
-						onPress={() => seTipoppessoa("Pessoa física")}
+						onPress={() => seTipoppessoa("f")}
 					/>
 					<List.Item style={container.itens}
 						title="Pessoa Jurídica"
 						left={props => <List.Icon {...props} icon="account-multiple" />}
-						onPress={() => seTipoppessoa("Pessoa jurídica")}
+						onPress={() => seTipoppessoa("j")}
 					/>
 				</List.Accordion>
-				{tipopessoa === "Pessoa física" && (
+				{tipopessoa === "f" && (
 
 					<TextInput
 						mode='outlined'
@@ -59,7 +60,7 @@ export default function CriarConta({ navigation }) {
 					/>
 				)
 				}
-				{tipopessoa === "Pessoa jurídica" && (
+				{tipopessoa === "j" && (
 
 					<TextInput
 						mode='outlined'
@@ -123,7 +124,56 @@ export default function CriarConta({ navigation }) {
 
 
 				<Button style={container.botao}
-					mode="contained" color="#DB652F" onPress={() => { }}>
+					mode="contained" color="#DB652F" onPress={
+						() => {
+							if (senha === confirmarsenha) {
+								if (tipopessoa === "f") {
+								axios.post('http://localhost:3000/cliente', {
+									email: email,
+									senha: senha,
+									endereco: endereco,
+									telefone: telefone,
+									fisicaoujuridica: tipopessoa,
+									nome: nome,
+									cpf: cpf})
+									.then(function (response) {
+										console.log(response);
+										alert('Cadastro realizado com sucesso!');
+										navigation.navigate('Login');
+									}
+									)
+									.catch(function (error) {
+										console.log(error);
+										alert('Erro ao realizar o cadastro!');
+									}
+									);
+								} else {
+									axios.post('http://localhost:3000/cliente', {
+										email: email,
+										senha: senha,
+										endereco: endereco,
+										telefone: telefone,
+										fisicaoujuridica: tipopessoa,
+										nome: nome,
+										cnpj: cnpj})
+										.then(function (response) {
+											console.log(response);
+											alert('Cadastro realizado com sucesso!');
+											navigation.navigate('Login');
+										}
+										)
+										.catch(function (error) {
+											console.log(error);
+											alert('Erro ao realizar o cadastro!');
+										}
+										);
+
+								}
+							} else {
+								alert('Senhas não conferem!');
+							}
+						}
+					}>
 					Cadastrar
 				</Button>
 			</ScrollView>
