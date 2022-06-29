@@ -7,7 +7,7 @@ import * as ImagePicker from "expo-image-picker";
 import { createNativeStackNavigator } from '@react-navigation/native-stack'; */
 import axios from "axios";
 
-function RegistroPet({ navigation }) {
+function CriarPet({ navigation }) {
 
 	const [nome, setNome] = React.useState("");
 	const [localizacao, setLocalizacao] = React.useState("");
@@ -317,7 +317,7 @@ function RegistroPet({ navigation }) {
 						}
 					}
 					}>
-					Registrar
+					Cadastrar
 				</Button>
 			</ScrollView>
 		</SafeAreaView>
@@ -325,4 +325,4 @@ function RegistroPet({ navigation }) {
 }
 
 
-export default RegistroPet;
+export default CriarPet;
