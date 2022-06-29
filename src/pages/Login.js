@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Text } from 'react-native-paper';
 
+
 export default function Login({navigation}) {
 
     const [email, setEmail] = useState("");
@@ -73,7 +74,7 @@ export default function Login({navigation}) {
               </Text>
             </TouchableOpacity>
             
-            <TouchableOpacity onPress={() => navigation.navigate("TelaInicial")}>
+            <TouchableOpacity onPress={() => navigation.navigate("CheckCampos")}>
               <Text style = {styles.Semlogin}>
                   Entrar sem login
               </Text>

@@ -44,7 +44,7 @@ export default function TelaInicial({ navigation }) {
 			<Text>Tela Inicial</Text>
 			<Button title="Criar Pet" theme={
 				{ colors: { primary: 'white' } }
-			} style={styles.botao} onPress={() => navigation.navigate('CriarPet')}>
+			} style={styles.botao} onPress={() => navigation.navigate('CriarConta')}>
 				Cadastar Pet</Button>
 			<BottomNavigation
 				navigationState={{ index, routes }}

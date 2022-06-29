@@ -1,8 +1,8 @@
 import * as React from "react";
-import { ScrollView } from "react-native";
-import { Button, ToggleButton, TextInput, List } from "react-native-paper";
-import { View, StyleSheet, Image } from "react-native";
+import { Button, TextInput, List } from "react-native-paper";
+import { ScrollView, StyleSheet, Image } from "react-native";
 import axios from "axios";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function CriarConta({ navigation }) {
 
@@ -19,19 +19,11 @@ export default function CriarConta({ navigation }) {
 	const [expanded, setExpanded] = React.useState(true);
 	const handlePress = () => setExpanded(!expanded);
 
-	const theme = {
-		colors: {
-			primary: "#db652f",
-			secondary: "#db652f",
-			terticiary: "#db652f",
-		}
-	}
-
 	return (
-		<View style={container.conteudo}>
-			<Image style={container.logo} source={require('../../assets/logo.png')} />
+		<SafeAreaView style={container.conteudo}>
 			<ScrollView>
-				<List.Accordion theme={theme} style={container.tipopessoa}
+				<Image style={container.logo} source={require('../../assets/logo.png')} />
+				<List.Accordion style={container.tipopessoa}
 					title={tipopessoa === "" ? "Tipo de pessoa" : tipopessoa}
 					left={props => <List.Icon {...props} icon="account-multiple" />}
 					expanded={expanded}
@@ -39,15 +31,15 @@ export default function CriarConta({ navigation }) {
 					<List.Item style={container.itens}
 						title="Pessoa Física"
 						left={props => <List.Icon {...props} icon="account" />}
-						onPress={() => seTipoppessoa("f")}
+						onPress={() => seTipoppessoa("Pessoa Física")}
 					/>
 					<List.Item style={container.itens}
 						title="Pessoa Jurídica"
 						left={props => <List.Icon {...props} icon="account-multiple" />}
-						onPress={() => seTipoppessoa("j")}
+						onPress={() => seTipoppessoa("Pessoa Jurídica")}
 					/>
 				</List.Accordion>
-				{tipopessoa === "f" && (
+				{tipopessoa === "Pessoa Física" && (
 
 					<TextInput
 						mode='outlined'
@@ -60,7 +52,7 @@ export default function CriarConta({ navigation }) {
 					/>
 				)
 				}
-				{tipopessoa === "j" && (
+				{tipopessoa === "Pessoa Jurídica" && (
 
 					<TextInput
 						mode='outlined'
@@ -72,7 +64,7 @@ export default function CriarConta({ navigation }) {
 						style={container.input}
 					/>
 				)}
-				<TextInput label="Nome*"
+				<TextInput label="Nome"
 					mode='outlined'
 					outlineColor='#ECEBEA'
 					activeOutlineColor='#DB652F'
@@ -80,7 +72,7 @@ export default function CriarConta({ navigation }) {
 					value={nome}
 					onChangeText={nome => setNome(nome)} />
 
-				<TextInput label="Endereço*"
+				<TextInput label="Endereço"
 					mode='outlined'
 					outlineColor='#ECEBEA'
 					activeOutlineColor='#DB652F'
@@ -88,7 +80,7 @@ export default function CriarConta({ navigation }) {
 					style={container.input}
 					onChangeText={endereco => setEndereco(endereco)} />
 
-				<TextInput label="Telefone*"
+				<TextInput label="Telefone"
 					mode='outlined'
 					outlineColor='#ECEBEA'
 					activeOutlineColor='#DB652F'
@@ -96,7 +88,7 @@ export default function CriarConta({ navigation }) {
 					value={telefone}
 					onChangeText={telefone => setTelefone(telefone)} />
 
-				<TextInput label="Email*"
+				<TextInput label="Email"
 					mode='outlined'
 					outlineColor='#ECEBEA'
 					activeOutlineColor='#DB652F'
@@ -104,7 +96,7 @@ export default function CriarConta({ navigation }) {
 					value={email}
 					onChangeText={email => setEmail(email)} />
 
-				<TextInput label="Senha*"
+				<TextInput label="Senha"
 					mode='outlined'
 					outlineColor='#ECEBEA'
 					activeOutlineColor='#DB652F'
@@ -113,7 +105,7 @@ export default function CriarConta({ navigation }) {
 					value={senha}
 					onChangeText={senha => setSenha(senha)} />
 
-				<TextInput label="Confirmar senha*"
+				<TextInput label="Confirmar senha"
 					mode='outlined'
 					outlineColor='#ECEBEA'
 					activeOutlineColor='#DB652F'
@@ -128,25 +120,26 @@ export default function CriarConta({ navigation }) {
 						() => {
 							if (senha === confirmarsenha) {
 								if (tipopessoa === "f") {
-								axios.post('http://localhost:3000/cliente', {
-									email: email,
-									senha: senha,
-									endereco: endereco,
-									telefone: telefone,
-									fisicaoujuridica: tipopessoa,
-									nome: nome,
-									cpf: cpf})
-									.then(function (response) {
-										console.log(response);
-										alert('Cadastro realizado com sucesso!');
-										navigation.navigate('Login');
-									}
-									)
-									.catch(function (error) {
-										console.log(error);
-										alert('Erro ao realizar o cadastro!');
-									}
-									);
+									axios.post('http://localhost:3000/cliente', {
+										email: email,
+										senha: senha,
+										endereco: endereco,
+										telefone: telefone,
+										fisicaoujuridica: tipopessoa,
+										nome: nome,
+										cpf: cpf
+									})
+										.then(function (response) {
+											console.log(response);
+											alert('Cadastro realizado com sucesso!');
+											navigation.navigate('Login');
+										}
+										)
+										.catch(function (error) {
+											console.log(error);
+											alert('Erro ao realizar o cadastro!');
+										}
+										);
 								} else {
 									axios.post('http://localhost:3000/cliente', {
 										email: email,
@@ -155,7 +148,8 @@ export default function CriarConta({ navigation }) {
 										telefone: telefone,
 										fisicaoujuridica: tipopessoa,
 										nome: nome,
-										cnpj: cnpj})
+										cnpj: cnpj
+									})
 										.then(function (response) {
 											console.log(response);
 											alert('Cadastro realizado com sucesso!');
@@ -178,7 +172,7 @@ export default function CriarConta({ navigation }) {
 				</Button>
 			</ScrollView>
 
-		</View>
+		</SafeAreaView>
 	);
 }
 

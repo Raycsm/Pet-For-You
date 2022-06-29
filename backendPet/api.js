@@ -24,7 +24,7 @@ const Sequelize = new sequelize(database_name, username, password, {
 	}
 });
 
-const Cliente = Sequelize.define('clientes', {
+const Pessoa = Sequelize.define('pessoas', {
 	id: {
 		type: sequelize.INTEGER,
 		primaryKey: true,
@@ -84,7 +84,7 @@ const PessoaJuridica = Sequelize.define('pessoas_juridicas', {
 	}
 });
 
-const pet = Sequelize.define('pet', {
+const animal = Sequelize.define('animais', {
 	id: {
 		type: sequelize.INTEGER,
 		primaryKey: true,
@@ -152,9 +152,9 @@ const pet = Sequelize.define('pet', {
 	}
 });
 
-app.post('/cliente', (req, res) => {
+app.post('/pessoa', (req, res) => {
 	const { email, senha, endereco, telefone, fisicaoujuridica } = req.body;
-	Cliente.create({
+	Pessoa.create({
 		email,
 		senha,
 		endereco,
@@ -162,12 +162,12 @@ app.post('/cliente', (req, res) => {
 		fisicaoujuridica
 	})
 		.then(() => {
-			Cliente.findOne({
+			Pessoa.findOne({
 				where: {
 					email
 				}
 			})
-				.then(cliente => {
+				.then(pessoa => {
 					const { id } = cliente;
 					if (fisicaoujuridica === 'f') {
 						const { cpf, nome } = req.body;
@@ -207,8 +207,8 @@ app.post('/cliente', (req, res) => {
 });
 
 
-app.post('/pet', (req, res) => {
-	pet.create({
+app.post('/animal', (req, res) => {
+	animal.create({
 		nome: req.body.nome,
 		tipo: req.body.tipo,
 		localizacao: req.body.localizacao,
