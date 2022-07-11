@@ -3,9 +3,11 @@ import { SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import { Card, Button, ToggleButton, TextInput, Text, List, Avatar } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-/* import { NavigationContainer } from '@react-navigation/native';
+/* import { Navigationstyle } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'; */
 import axios from "axios";
+import style from "./style/style";
+import theme from "./style/theme";
 
 function CriarPet({ navigation }) {
 
@@ -43,54 +45,12 @@ function CriarPet({ navigation }) {
 	};
 
 	const scrollView = StyleSheet.create({
-		container: {
+		style: {
 			flex: 1,
 		},
 	});
 
-	const theme = {
-		colors: {
-			primary: '#DB652F',
-			accent: '#DB652F',
-		}
-	};
-
-	const container = StyleSheet.create({
-		botao: {
-			width: 310,
-			alignSelf: 'center',
-			marginBottom: 30,
-			padding: 8,
-			textAlign: 'center',
-			borderRadius: 40,
-			marginTop: 20,
-			backgroundColor: '#DB652F',
-		},
-		content: {
-			display: "flex",
-			flex: 1,
-			alignItems: "center",
-			justifyContent: "center",
-			flexDirection: "row",
-			backgroundColor: 'black',
-		},
-		elements: {
-			margin: 10,
-		},
-		elementscenter: {
-			margin: 5,
-			marginBottom: 10,
-			alignItems: "center",
-			justifyContent: "center",
-		},
-		text: {
-			fontSize: 18,
-			marginTop: 10,
-			marginBottom: 10,
-			alignItems: "center",
-			justifyContent: "center",
-			textAlign: "center"
-		},
+	const style = StyleSheet.create({
 		Avatar: {
 			alignItems: "center",
 			justifycontent: "center",
@@ -103,28 +63,28 @@ function CriarPet({ navigation }) {
 	});
 
 	return (
-		<SafeAreaView style={scrollView.container}>
+		<SafeAreaView style={scrollView.style}>
 			<ScrollView>
-				<Text style={container.text}>Foto do pet</Text>
+				<Text style={style.text}>Foto do pet</Text>
 				<TouchableOpacity onPress={pegarImagem}>
 					<Avatar.Icon size={120} icon="camera-outline" theme={theme}
-						style={container.Avatar} />
+						style={style.Avatar} />
 				</TouchableOpacity>
-				{foto ? <View style={container.elementscenter}>
+				{foto ? <View style={style.elementscenter}>
 					<Avatar.Image size={120} source={{ uri: foto }} /> </View> : null}
 				<TextInput label="Nome*"
 					theme={theme}
-					style={container.elements}
+					style={style.elements}
 					value={nome}
 					onChangeText={nome => setNome(nome)} />
 				<TextInput label="Localização*"
 					value={localizacao}
-					style={container.elements}
+					style={style.elements}
 					theme={theme}
 					onChangeText={localizacao => setLocalizacao(localizacao)} />
-				<Text style={container.text}>Sexo*</Text>
+				<Text style={style.text}>Sexo*</Text>
 				<ToggleButton.Row
-					style={container.elementscenter}
+					style={style.elementscenter}
 					onValueChange={value => setSexo(value)}
 					value={sexo}>
 					<ToggleButton
@@ -138,7 +98,7 @@ function CriarPet({ navigation }) {
 				</ToggleButton.Row>
 				<List.Accordion
 					title={tipo}
-					style={container.elements}
+					style={style.elements}
 					theme={theme}
 					left={props => <List.Icon {...props} icon="paw" />}>
 					<List.Item title="Cachorro"
@@ -153,7 +113,7 @@ function CriarPet({ navigation }) {
 						<List.Accordion
 							title={raca}
 							theme={theme}
-							style={container.elements}
+							style={style.elements}
 							left={props => <List.Icon {...props} icon="dog" />}
 						>
 							<List.Item title="Salsicha"
@@ -172,7 +132,7 @@ function CriarPet({ navigation }) {
 						<List.Accordion
 							title={raca}
 							theme={theme}
-							style={container.elements}
+							style={style.elements}
 							left={props => <List.Icon {...props} icon="cat" />}
 						>
 							<List.Item title="Persa"
@@ -191,7 +151,7 @@ function CriarPet({ navigation }) {
 						<List.Accordion
 							title={raca}
 							theme={theme}
-							style={container.elements}
+							style={style.elements}
 							left={props => <List.Icon {...props} icon="rabbit" />}
 						>
 							<List.Item title="Angorá"
@@ -208,14 +168,14 @@ function CriarPet({ navigation }) {
 				<View style={{ flexDirection: "row" }}>
 					<View style={{ flex: 1 }}>
 						<TextInput label="Anos"
-							style={container.elements}
+							style={style.elements}
 							value={anos}
 							theme={theme}
 							onChangeText={anos => setAnos(anos)} />
 					</View>
 					<View style={{ flex: 1 }}>
 						<TextInput label="Meses"
-							style={container.elements}
+							style={style.elements}
 							value={meses}
 							theme={theme}
 							onChangeText={meses => setMeses(meses)} />
@@ -223,7 +183,7 @@ function CriarPet({ navigation }) {
 				</View>
 				<List.Accordion
 					title={peso}
-					style={container.elements}
+					style={style.elements}
 					theme={theme}
 					left={props => <List.Icon {...props} icon="weight" />}>
 					<List.Item title="2-5 kg"
@@ -235,7 +195,7 @@ function CriarPet({ navigation }) {
 				</List.Accordion>
 				<List.Accordion
 					title={porte}
-					style={container.elements}
+					style={style.elements}
 					theme={theme}
 					left={props => <List.Icon {...props} icon="dog-side" />}>
 					<List.Item title="Pequeno"
@@ -245,10 +205,10 @@ function CriarPet({ navigation }) {
 					<List.Item title="Grande"
 						onPress={() => setPorte("Grande")} />
 				</List.Accordion>
-				<Text style={container.text}>Vacinado?</Text>
+				<Text style={style.text}>Vacinado?</Text>
 				<ToggleButton.Row
 					onValueChange={value => setVacinado(value)}
-					style={container.elementscenter}
+					style={style.elementscenter}
 					value={vacinado}>
 					<ToggleButton
 						icon="check"
@@ -259,10 +219,10 @@ function CriarPet({ navigation }) {
 						value="false"
 					/>
 				</ToggleButton.Row>
-				<Text style={container.text}>Castrado?</Text>
+				<Text style={style.text}>Castrado?</Text>
 				<ToggleButton.Row
 					onValueChange={value => setCastrado(value)}
-					style={container.elementscenter}
+					style={style.elementscenter}
 					value={castrado}>
 					<ToggleButton
 						icon="check"
@@ -274,21 +234,22 @@ function CriarPet({ navigation }) {
 					/>
 				</ToggleButton.Row>
 				<TextInput label="Telefone" theme={theme}
-					style={container.elements}
+					style={style.elements}
 					value={telefone}
 					onChangeText={telefone => setTelefone(telefone)} />
 				<TextInput label="Email" theme={theme}
-					style={container.elements}
+					style={style.elements}
 					value={email}
 					onChangeText={email => setEmail(email)} />
 				<TextInput label="Descrição*" theme={theme}
-					style={container.elements}
+					style={style.elements}
 					multiline={true}
 					numberOfLines={5}
 					value={descricao}
 					onChangeText={descricao => setDescricao(descricao)} />
 				<Button
-					style={container.botao}
+					style={style.botao}
+					theme = { theme }
 					mode="contained"
 					onPress={() => {
 						if (nome === "" || raca === "" || peso === "" || porte === "" || descricao === "" || telefone === "" || email === "") {
