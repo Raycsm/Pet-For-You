@@ -1,6 +1,7 @@
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
 import { BottomNavigation, Button } from 'react-native-paper'
+import style from './style/style';
 
 export default function TelaInicial({ navigation }) {
 	const [index, setIndex] = React.useState(0);
@@ -25,27 +26,14 @@ export default function TelaInicial({ navigation }) {
 		}
 	}
 
-	const styles = StyleSheet.create({
-		botao: {
-			width: 310,
-			alignSelf: 'center',
-			marginBottom: 30,
-			width: '80%',
-			padding: 8,
-			textAlign: 'center',
-			borderRadius: 40,
-			marginTop: 20,
-			backgroundColor: '#DB652F',
-		}
-	});
-
 	return (
 		<>
 			<Text>Tela Inicial</Text>
-			<Button title="Criar Pet" theme={
-				{ colors: { primary: 'white' } }
-			} style={styles.botao} onPress={() => navigation.navigate('CriarPet')}>
-				Cadastar Pet</Button>
+			<Button title="Criar Pet"
+				style={style.botao} 
+				onPress={() => navigation.navigate('CriarPet')}>
+				Cadastar Pet
+			</Button>
 			<BottomNavigation
 				navigationState={{ index, routes }}
 				renderScene={renderScene}
