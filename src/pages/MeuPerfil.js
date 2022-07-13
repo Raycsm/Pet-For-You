@@ -1,9 +1,10 @@
 import { StyleSheet, SafeAreaView, View, StatusBar, TouchableOpacity, Text, ScrollView, Image } from 'react-native'
 import React, { Component, useState } from 'react'
-import { TextInput, Button, Avatar, Modal, Portal, Provider} from 'react-native-paper';
+import { TextInput,Appbar, Button, Avatar, Modal, Portal, Provider} from 'react-native-paper';
 import AvatarImg from "../../assets/avatar.png"
 import CheckImg from "../../assets/Check.png"
 import QuestionImg from "../../assets/Question.png"
+import StackNavigation, { TelaInicialNavigation } from '../Navegacoes/StackNavigation'
 
 const StatusBarHeight = StatusBar.currentHeight; //pega altura da statusbar e coloca como margintop
 
@@ -42,12 +43,19 @@ export default function MeuPerfil({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Appbar.Header style={styles.appbar}>
+                <Appbar.BackAction onPress={() => {navigation.navigate(TelaInicialNavigation)}} />
+            </Appbar.Header>
+           
       <ScrollView contentContainerStyle={styles.bg}>
 
       <Provider>
       <Text style={styles.title}> Meu Perfil </Text>
 
       <Avatar.Image style={styles.avatar} size={134} source={AvatarImg} />
+      <TouchableOpacity style={styles.botaoFoto} onPress= {() => EscolherFoto() }>
+					<Text style= {styles.textoBotao}>Escolher foto</Text>
+			</TouchableOpacity>
 
       <TextInput
             style={styles.input}
@@ -130,12 +138,6 @@ export default function MeuPerfil({ navigation }) {
 
           <View style={styles.containerBotao}>
 
-            <Button
-                style={styles.botaoCancelar}
-                mode="contained">
-            Cancelar
-            </Button>
-
             <Button onPress={() => showModalSalvar()}
                 style={styles.botaoSalvar}
                 mode="contained">
@@ -199,6 +201,11 @@ bg:{
   flexGrow: 1,
   alignItems: 'center',
 },
+appbar: {
+  height:10,
+  backgroundColor: 'white',
+  marginBottom:25,
+},
 avatar: {
   marginBottom: 34,
   alignSelf: 'center',
@@ -249,13 +256,13 @@ containerBotao: {
 },
 
 botaoSalvar: {
-  width:154, 
+  width:250, 
   alignSelf: 'center',
   marginBottom: 30,
   padding: 8,
   textAlign:'center',
   borderRadius: 40,
-  marginTop:20,
+  marginTop:10,
   backgroundColor: '#DB652F',
 },
 
@@ -269,15 +276,29 @@ botaoCancelar: {
   marginTop:20,
   backgroundColor: '#96918F',
 },
+botaoFoto:{
+  width: 120,
+  height: 35,
+  borderRadius:50,
+  backgroundColor:'#DB652F',
+  alignSelf:'center',
+  alignItems:'center',
+  justifyContent:'center',
+  marginBottom:30,
+},
+textoBotao:{
+  color:"#fff",
+},
 
 botaoExcluir: {
-  width:154, 
+  width:250, 
   alignSelf: 'center',
   marginBottom: 30,
   padding: 8,
   textAlign:'center',
   borderRadius: 40,
   marginTop:20,
+  marginBottom:80,
   backgroundColor: '#C00202',
 },
 

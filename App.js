@@ -1,15 +1,5 @@
+import 'react-native-gesture-handler'
 import React from "react";
-import { Provider as PaperProvider } from "react-native-paper";
-import Routes from "./src/rotas/routes";
+import Navegacoes from './src/Navegacoes'
 
-const App = () => {
-  
-  return (
-    <PaperProvider>
-      <Routes/>
-    </PaperProvider>
-    
-  );
-};
-
-export default App;
+export default props => <Navegacoes/>

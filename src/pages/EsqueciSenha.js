@@ -1,60 +1,70 @@
 import React, { useState } from 'react';
-import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { TextInput, Button, Text } from 'react-native-paper';
+import { Image, StyleSheet, TouchableOpacity,View } from 'react-native';
+import { TextInput, Button, Text, Appbar } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function Login({navigation}) {
+export default function EsqueciSenha({navigation}) {
 
     const [email, setEmail] = useState("");
     
     function CheckCampos () {
         if((email) !== '')
       return navigation.navigate('');
-        
-  }
+    }
  
     return (
-        <View>
-            <Image style={styles.logo} source={require('../../assets/logo.png')}/>
-            
-            <Text style={styles.titulo}>
-                Recuperar Senha
-            </Text>
+        <SafeAreaView style={styles.bg}>
+                <Appbar.Header style = {styles.appbar}>
+                    <Appbar.BackAction onPress={() => {navigation.navigate("Login")}} />
+                </Appbar.Header>
+                <Image style={styles.logo} source={require('../../assets/logo.png')}/>
+                
+                <Text style={styles.titulo}>
+                    Recuperar Senha
+                </Text>
 
-            <TextInput
-              style={styles.input}
-              mode='outlined'
-              outlineColor='#ECEBEA'
-              activeOutlineColor='#DB652F'
-              label="Digite o e-mail cadastrado"
-              value={email}
-              onChangeText={(text) => setEmail(text)}
-            />   
-
-            <Button onPress={() => CheckCampos()}
-                style={styles.botao}
-                mode="contained">
-                Recuperar
-            </Button>
-            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-              <Text style = {styles.Conta}>
-                  Já possui uma conta? <Text style={styles.FacaLogin}>Faça login</Text>
-              </Text>
-            </TouchableOpacity>
-        </View>
+                <TextInput
+                    style={styles.input}
+                    mode='outlined'
+                    outlineColor='#ECEBEA'
+                    activeOutlineColor='#DB652F'
+                    label="Digite o e-mail cadastrado"
+                    value={email}
+                    onChangeText={(text) => setEmail(text)}
+                />   
+                <Button 
+                      onPress={() => CheckCampos()}
+                      style={styles.botao}
+                      mode="contained">
+                      Recuperar
+                </Button>
+                <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                    <Text style = {styles.Conta}>
+                        Já possui uma conta? <Text style={styles.FacaLogin}>Faça login</Text>
+                    </Text>
+                </TouchableOpacity>
+		    </SafeAreaView>
     );
   };
 
 const styles = StyleSheet.create({
 
+  bg:{
+    backgroundColor:'white',
+  },
   logo: {
     width: 200,
     height: 150,
     display: 'flex',
     alignSelf: 'center',
-    marginTop:60,
+    marginTop:20,
     marginBottom:40,
   },
-
+  appbar: {
+		height:10,
+		backgroundColor: 'white',
+		marginBottom:25,
+	},
   titulo:{
     alignSelf: 'center',
     marginBottom:30,
@@ -80,23 +90,18 @@ const styles = StyleSheet.create({
     padding: 8,
     textAlign:'center',
     borderRadius: 40,
-    marginTop:20,
+    marginTop:30,
     backgroundColor: '#DB652F',
   },
 
   FacaLogin:{
     fontWeight:'bold',
     color: '#DB652F',
-    marginBottom:20,
   },
-
   Conta:{
     marginBottom:15,
     alignSelf:'center',
     color:'#837F7F',
+    marginBottom:160,
   },
-  
- 
-
-
 });

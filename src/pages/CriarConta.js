@@ -1,41 +1,62 @@
-import * as React from "react";
-import { Button, TextInput, List } from "react-native-paper";
-import { ScrollView, StyleSheet, Image } from "react-native";
+import React, { useState } from 'react';
+import { Text, Button, TextInput, List, Appbar, Avatar} from "react-native-paper";
+import { ScrollView, StyleSheet, Image, TouchableOpacity } from "react-native";
 import axios from "axios";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function CriarConta({ navigation }) {
-
 	const [tipopessoa, seTipoppessoa] = React.useState("");
 	const [nome, setNome] = React.useState("");
 	const [cpf, setCpf] = React.useState("");
 	const [cnpj, setCnpj] = React.useState("");
 	const [email, setEmail] = React.useState("");
-	const [senha, setSenha] = React.useState("");
+	const [senha, setsenha] = React.useState("");
 	const [confirmarsenha, setConfirmarsenha] = React.useState("");
 	const [telefone, setTelefone] = React.useState("")
-	const [endereco, setEndereco] = React.useState("");
+	const [endereco, setEndereco] = useState("");
 
 	const [expanded, setExpanded] = React.useState(true);
 	const handlePress = () => setExpanded(!expanded);
 
+	const [ShowPassword, setShowPassword] = React.useState(true)
+
+	const theme = {
+		colors: {
+			primary: "#db652f",
+			secondary: "#db652f",
+			terticiary: "#db652f",
+		}
+	}
 	return (
 		<SafeAreaView style={container.conteudo}>
+			<Appbar.Header style={container.appbar}>
+                <Appbar.BackAction onPress={() => {navigation.navigate("Login")}} />
+            </Appbar.Header>
 			<ScrollView>
-				<Image style={container.logo} source={require('../../assets/logo.png')} />
-				<List.Accordion style={container.tipopessoa}
+
+				<Image style={container.logo} source={require('../../assets/logo.png')}/>
+				
+				<Avatar.Image style={container.avatar} size = {120} source={require('../../assets/avatar.png')} />
+
+				<TouchableOpacity style={container.botaoFoto} onPress= {() => EscolherFoto() }>
+					<Text style= {container.textoBotao}>Escolher foto</Text>
+				</TouchableOpacity> 
+					
+				<List.Accordion theme = {theme}
+					style={container.tipopessoa}
 					title={tipopessoa === "" ? "Tipo de pessoa" : tipopessoa}
 					left={props => <List.Icon {...props} icon="account-multiple" />}
-					expanded={expanded}
 					onPress={handlePress}>
 					<List.Item style={container.itens}
 						title="Pessoa Física"
-						left={props => <List.Icon {...props} icon="account" />}
+						left={props => <List.Icon {...props} icon="account"/>}
 						onPress={() => seTipoppessoa("Pessoa Física")}
 					/>
 					<List.Item style={container.itens}
 						title="Pessoa Jurídica"
 						left={props => <List.Icon {...props} icon="account-multiple" />}
+						outlineColor='#ECEBEA'
+						activeOutlineColor='#DB652F'
 						onPress={() => seTipoppessoa("Pessoa Jurídica")}
 					/>
 				</List.Accordion>
@@ -101,28 +122,59 @@ export default function CriarConta({ navigation }) {
 					outlineColor='#ECEBEA'
 					activeOutlineColor='#DB652F'
 					style={container.input}
-					secureTextEntry={true}
+					secureTextEntry={ShowPassword}
+					right={
+						ShowPassword ?
+						<TextInput.Icon
+							name="eye"
+							size={20}
+							color="grey"
+							onPress= {() => setShowPassword(!ShowPassword)}
+							/>
+							:
+							<TextInput.Icon
+							name ="eye-off"
+							size={20}
+							color="grey"
+							onPress= {() => setShowPassword(!ShowPassword)}
+							/>
+                  }
 					value={senha}
-					onChangeText={senha => setSenha(senha)} />
-
+					onChangeText={text => setsenha(text)} />
+						
 				<TextInput label="Confirmar senha"
 					mode='outlined'
 					outlineColor='#ECEBEA'
 					activeOutlineColor='#DB652F'
 					style={container.input}
-					secureTextEntry={true}
+					secureTextEntry={ShowPassword}
+					right={
+						ShowPassword ?
+						<TextInput.Icon
+							name="eye"
+							size={20}
+							color="grey"
+							onPress= {() => setShowPassword(!ShowPassword)}
+							/>
+							:
+							<TextInput.Icon
+							name ="eye-off"
+							size={20}
+							color="grey"
+							onPress= {() => setShowPassword(!ShowPassword)}
+							/>
+                 	}
 					value={confirmarsenha}
 					onChangeText={confirmarsenha => setConfirmarsenha(confirmarsenha)} />
-
-
+            	
 				<Button style={container.botao}
-					mode="contained" color="#DB652F" onPress={
+					mode="contained" onPress={
 						() => {
 							if (senha === confirmarsenha) {
 								if (tipopessoa === "f") {
-									axios.post('http://localhost:3000/cliente', {
+									axios.post('http://localhost:3000/pessoa', {
 										email: email,
-										senha: senha,
+										senha:senha,
 										endereco: endereco,
 										telefone: telefone,
 										fisicaoujuridica: tipopessoa,
@@ -141,7 +193,7 @@ export default function CriarConta({ navigation }) {
 										}
 										);
 								} else {
-									axios.post('http://localhost:3000/cliente', {
+									axios.post('http://localhost:3000/pessoa', {
 										email: email,
 										senha: senha,
 										endereco: endereco,
@@ -161,7 +213,6 @@ export default function CriarConta({ navigation }) {
 											alert('Erro ao realizar o cadastro!');
 										}
 										);
-
 								}
 							} else {
 								alert('Senhas não conferem!');
@@ -170,8 +221,12 @@ export default function CriarConta({ navigation }) {
 					}>
 					Cadastrar
 				</Button>
+				<TouchableOpacity onPress={() => navigation.navigate("Login")}>
+					<Text style = {container.Conta}>
+						Já possui uma conta? <Text style={container.FacaLogin}>Faça login</Text>
+					</Text>
+				</TouchableOpacity>
 			</ScrollView>
-
 		</SafeAreaView>
 	);
 }
@@ -180,26 +235,43 @@ const container = StyleSheet.create({
 	conteudo: {
 		backgroundColor: 'white',
 	},
-	content: {
-		display: "flex",
-		flex: 1,
+	appbar: {
+		height:10,
+		backgroundColor: 'white',
+		marginBottom:25,
+	},
+	avatar:{
+		alignSelf:'center',
+		marginBottom:10,	
+	},
+	botaoFoto:{
+		width: 120,
+		height: 35,
+		borderRadius:50,
+		backgroundColor:'#DB652F',
+		alignSelf:'center',
+		alignItems:'center',
+		justifyContent:'center',
+		marginBottom:30,
+	},
+	textoBotao:{
+		color:"#fff",
 	},
 	input: {
 		marginBottom: 10,
 		width: 310,
-		borderRadius: '10',
 		alignSelf: 'center',
-		backgroundColor: '#C2C0BE',
 		outlineColor: 'black',
 		fontsize: 14,
+		backgroundColor:'#E7E6E5',
 	},
 	logo: {
-		width: 150,
-		height: 100,
+		width: 120,
+		height: 90,
 		display: 'flex',
 		alignSelf: 'center',
-		marginTop: 60,
-		marginBottom: 40,
+		marginTop: 10,
+		marginBottom: 20,
 	},
 	tipopessoa: {
 		marginBottom: 10,
@@ -208,7 +280,17 @@ const container = StyleSheet.create({
 		fontsize: 14,
 		backgroundColor: '#E7E6E5',
 	},
-
+	FacaLogin:{
+		fontWeight:'bold',
+		color: '#DB652F',
+		marginBottom:20,
+	},
+	  Conta:{
+		marginBottom:15,
+		alignSelf:'center',
+		color:'#837F7F',
+		marginBottom:100,
+	},
 	itens: {
 		marginBottom: 10,
 		width: 310,
@@ -220,11 +302,12 @@ const container = StyleSheet.create({
 	botao: {
 		width: 310,
 		alignSelf: 'center',
-		marginBottom: 30,
+		marginBottom: 20,
 		width: '80%',
 		padding: 8,
 		textAlign: 'center',
 		borderRadius: 40,
 		backgroundColor: '#DB652F',
+		marginTop:20,
 	}
 });

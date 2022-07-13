@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Text } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 export default function Login({navigation}) {
@@ -17,71 +18,73 @@ export default function Login({navigation}) {
   }
  
     return (
-        <View style={styles.bg}>
-            <Image style={styles.logo} source={require('../../assets/logo.png')}/>
-          
-            <TextInput
-              style={styles.input}
-              mode='outlined'
-              outlineColor='#ECEBEA'
-              activeOutlineColor='#DB652F'
-              label="E-mail"
-              value={email}
-              onChangeText={(text) => setEmail(text)}
-            />
-
-            <TextInput
-              style={styles.input}
-              mode='outlined'
-              outlineColor='#ECEBEA'
-              activeOutlineColor='#DB652F'
-              label="Senha"
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-              secureTextEntry ={ShowPassword}
-              right={
-                ShowPassword ?
-                <TextInput.Icon
-                name="eye"
-                size={20}
-                color="grey"
-                onPress= {() => setShowPassword(!ShowPassword)}
+        <SafeAreaView style={styles.bg}>
+          <ScrollView>
+                <Image style={styles.logo} source={require('../../assets/logo.png')}/>
+              
+                <TextInput
+                  style={styles.input}
+                  mode='outlined'
+                  outlineColor='#ECEBEA'
+                  activeOutlineColor='#DB652F'
+                  label="E-mail"
+                  value={email}
+                  onChangeText={(text) => setEmail(text)}
                 />
-                :
-                <TextInput.Icon
-                name ="eye-off"
-                size={20}
-                color="grey"
-                onPress= {() => setShowPassword(!ShowPassword)}
-                />
-              }
-            
-            /> 
-            <TouchableOpacity onPress={() => navigation.navigate("EsqueciSenha")}>
-              <Text style = {styles.EsqueciSenha}>
-                Esqueci a senha
-              </Text>
-            </TouchableOpacity>      
 
-            <Button onPress={() => CheckCampos()}
-                style={styles.botao}
-                mode="contained">
-            Entrar
-            </Button>
-            <TouchableOpacity onPress={() => navigation.navigate("CriarConta")}>
-              <Text style = {styles.Conta}>
-                  Não tem uma conta? <Text style={styles.CriarConta}>Crie agora</Text>
-              </Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity onPress={() => navigation.navigate("CheckCampos")}>
-              <Text style = {styles.Semlogin}>
-                  Entrar sem login
-              </Text>
-            </TouchableOpacity>
+                <TextInput
+                  style={styles.input}
+                  mode='outlined'
+                  outlineColor='#ECEBEA'
+                  activeOutlineColor='#DB652F'
+                  label="Senha"
+                  value={password}
+                  onChangeText={(text) => setPassword(text)}
+                  secureTextEntry ={ShowPassword}
+                  right={
+                    ShowPassword ?
+                    <TextInput.Icon
+                    name="eye"
+                    size={20}
+                    color="grey"
+                    onPress= {() => setShowPassword(!ShowPassword)}
+                    />
+                    :
+                    <TextInput.Icon
+                    name ="eye-off"
+                    size={20}
+                    color="grey"
+                    onPress= {() => setShowPassword(!ShowPassword)}
+                    />
+                  }
+                
+                /> 
+                <TouchableOpacity onPress={() => navigation.navigate("EsqueciSenha")}>
+                  <Text style = {styles.EsqueciSenha}>
+                    Esqueci a senha
+                  </Text>
+                </TouchableOpacity>      
 
-            <Image style={styles.pets} source={require('../../assets/pets.png')} />
-        </View>
+                <Button onPress={() => CheckCampos()}
+                    style={styles.botao}
+                    mode="contained">
+                Entrar
+                </Button>
+                <TouchableOpacity onPress={() => navigation.navigate("CriarConta")}>
+                  <Text style = {styles.Conta}>
+                      Não tem uma conta? <Text style={styles.CriarConta}>Crie agora</Text>
+                  </Text>
+                </TouchableOpacity>
+                
+                <TouchableOpacity onPress={() => navigation.navigate("TelaInicial")}>
+                  <Text style = {styles.Semlogin}>
+                      Entrar sem login
+                  </Text>
+                </TouchableOpacity>
+
+                <Image style={styles.pets} source={require('../../assets/pets.png')} />
+            </ScrollView> 
+        </SafeAreaView>
     );
   };
 
@@ -95,7 +98,7 @@ const styles = StyleSheet.create({
     height: 150,
     display: 'flex',
     alignSelf: 'center',
-    marginTop:60,
+    marginTop:40,
     marginBottom:40,
   },
   pets: {
@@ -108,7 +111,7 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: 15,
     width:310,
-    borderRadius:'10',
+    borderRadius:'20',
     alignSelf: 'center',
     backgroundColor:'#E7E6E5',
     fontsize:14, 
