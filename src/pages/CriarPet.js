@@ -67,7 +67,7 @@ function CriarPet({ navigation }) {
 			<ScrollView>
 				<Text style={style.text}>Foto do pet</Text>
 				<TouchableOpacity onPress={pegarImagem}>
-					<Avatar.Icon size={120} icon="camera-outline" theme={theme}
+					<Avatar.Icon size={120} icon="camera-outline" theme={theme.colors}
 						style={style.Avatar} />
 				</TouchableOpacity>
 				{foto ? <View style={style.elementscenter}>
