@@ -1,11 +1,11 @@
 import { Text, StyleSheet, View } from 'react-native'
 import React, { Component } from 'react'
 
-export default class chat extends Component {
+export default class Notificacoes extends Component {
   render() {
     return (
       <View>
-        <Text>chat</Text>
+        <Text>Notificacoes</Text>
       </View>
     )
   }

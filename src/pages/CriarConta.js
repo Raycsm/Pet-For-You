@@ -4,6 +4,7 @@ import { Button, ToggleButton, TextInput, List } from "react-native-paper";
 import { View, StyleSheet, Image } from "react-native";
 import axios from "axios";
 import style from "./style/style";
+import theme from "./style/theme";
 
 export default function CriarConta({ navigation }) {
 
@@ -20,19 +21,11 @@ export default function CriarConta({ navigation }) {
 	const [expanded, setExpanded] = React.useState(true);
 	const handlePress = () => setExpanded(!expanded);
 
-	const theme = {
-		colors: {
-			primary: "#db652f",
-			secondary: "#db652f",
-			terticiary: "#db652f",
-		}
-	}
-
 	return (
 		<View style={style.conteudo}>
 			<Image style={style.logo} source={require('../../assets/logo.png')} />
 			<ScrollView>
-				<List.Accordion theme={theme} style={style.tipopessoa}
+				<List.Accordion theme={theme.colors} style={style.tipopessoa}
 					title={tipopessoa === "" ? "Tipo de pessoa" : tipopessoa}
 					left={props => <List.Icon {...props} icon="account-multiple" />}
 					expanded={expanded}
