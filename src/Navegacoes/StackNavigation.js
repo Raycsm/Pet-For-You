@@ -11,7 +11,7 @@ import Notificacoes from '../pages/Notificacoes';
 import SobreNos from '../pages/SobreNos';
 import Chat from '../pages/Chat';
 import Adocao from '../pages/Adocao';
-import Favoritos from '../pages/Favoritos';
+import PetsFavoritos from '../pages/PetsFavoritos';
 import ShowBottomTabs from "./BottomTabs";
 
 
@@ -77,7 +77,7 @@ const Stack = createNativeStackNavigator()
         return (
 
         <Stack.Navigator screenOptions={{headerShown:false}}>
-            <Stack.Screen name="Favoritos" component={Favoritos}/>
+            <Stack.Screen name="Favoritos" component={PetsFavoritos}/>
         </Stack.Navigator> 
         )
     }
