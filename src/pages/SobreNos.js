@@ -5,7 +5,7 @@ export default class Notificacoes extends Component {
   render() {
     return (
       <View>
-        <Text>Notificacoes</Text>
+        <Text>Sobre Nos</Text>
       </View>
     )
   }
