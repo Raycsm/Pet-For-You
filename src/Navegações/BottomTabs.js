@@ -4,7 +4,7 @@ import Icon from "@expo/vector-icons/build/FontAwesome5";
 import { Text } from "react-native-paper";
 
 
-import { MeuPerfilNavigation, TelaInicialNavigation } from "./StackNavigation";
+import {TelaInicialNavigation } from "./StackNavigation";
 import { FavoritosNavigation } from "./StackNavigation";
 import { AdocaoNavigation } from "./StackNavigation";
 import { ChatNavigation } from "./StackNavigation";
@@ -100,7 +100,7 @@ export default function ShowBottomTabs() {
                 />
             <Tab.Screen 
                 name="ChatTab" 
-                component={MeuPerfilNavigation}
+                component={ChatNavigation}
                 options={{
                     tabBarIcon:({focused}) =>(
                         <>
@@ -117,7 +117,7 @@ export default function ShowBottomTabs() {
                                 textAlign:'center'
                             }}
                             >
-                            Perfil</Text>
+                            Chat</Text>
                         </>
                     )
                 }}
