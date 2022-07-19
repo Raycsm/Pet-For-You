@@ -18,7 +18,7 @@ export default function Login({ navigation }) {
 
   return (
     <View>
-      <Image style={styles.logo} source={require('../../assets/logo.png')} />
+      <Image style={style.logo} source={require('../../assets/logo.png')} />
 
       <TextInput
         style={style.input}
@@ -100,25 +100,7 @@ export default function Login({ navigation }) {
         </Text>
       </TouchableOpacity>
 
-      <Image style={styles.pets} source={require('../../assets/pets.png')} />
+      <Image style={style.pets} source={require('../../assets/pets.png')} />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-
-  logo: {
-    width: 200,
-    height: 150,
-    display: 'flex',
-    alignSelf: 'center',
-    marginTop: 60,
-    marginBottom: 40,
-  },
-  pets: {
-    display: 'flex',
-    alignSelf: 'center',
-    width: 310,
-    height: 165,
-  },
-});

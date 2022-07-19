@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ScrollView } from "react-native";
-import { Button, ToggleButton, TextInput, List } from "react-native-paper";
-import { View, StyleSheet, Image } from "react-native";
+import { Button, TextInput, List } from "react-native-paper";
+import { View, Image } from "react-native";
 import axios from "axios";
 import style from "./style/style";
 import theme from "./style/theme";
@@ -41,7 +41,7 @@ export default function CriarConta({ navigation }) {
 						onPress={() => seTipoppessoa("j")}
 					/>
 				</List.Accordion>
-				{tipopessoa === "f" && (
+				{tipopessoa === "Pessoa Física" && (
 
 					<TextInput
 						mode='outlined'
@@ -54,7 +54,7 @@ export default function CriarConta({ navigation }) {
 					/>
 				)
 				}
-				{tipopessoa === "j" && (
+				{tipopessoa === "Pessoa Jurídica" && (
 
 					<TextInput
 						mode='outlined'
@@ -121,7 +121,7 @@ export default function CriarConta({ navigation }) {
 					mode="contained" color="#DB652F" onPress={
 						() => {
 							if (senha === confirmarsenha) {
-								if (tipopessoa === "f") {
+								if (tipopessoa === "Pessoa Física") {
 								axios.post('http://localhost:3000/cliente', {
 									email: email,
 									senha: senha,

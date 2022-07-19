@@ -1,5 +1,7 @@
-import { Text, StyleSheet, View } from 'react-native'
+import { Text, View } from 'react-native'
 import React, { Component } from 'react'
+import style from "./style/style";
+import theme from "./style/theme";
 
 export default class chat extends Component {
   render() {
@@ -11,4 +13,3 @@ export default class chat extends Component {
   }
 }
 
-const styles = StyleSheet.create({})

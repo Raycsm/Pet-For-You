@@ -4,7 +4,8 @@ import { TextInput,Appbar, Button, Avatar, Modal, Portal, Provider} from 'react-
 import AvatarImg from "../../assets/avatar.png"
 import CheckImg from "../../assets/Check.png"
 import QuestionImg from "../../assets/Question.png"
-import StackNavigation, { TelaInicialNavigation } from '../Navegacoes/StackNavigation'
+import { TelaInicialNavigation } from '../Navegacoes/StackNavigation'
+import style from "./style/style";
 
 const StatusBarHeight = StatusBar.currentHeight; //pega altura da statusbar e coloca como margintop
 
@@ -43,7 +44,7 @@ export default function MeuPerfil({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Appbar.Header style={styles.appbar}>
+      <Appbar.Header style={style.appbar}>
                 <Appbar.BackAction onPress={() => {navigation.navigate(TelaInicialNavigation)}} />
             </Appbar.Header>
            
@@ -52,13 +53,13 @@ export default function MeuPerfil({ navigation }) {
       <Provider>
       <Text style={styles.title}> Meu Perfil </Text>
 
-      <Avatar.Image style={styles.avatar} size={134} source={AvatarImg} />
+      <Avatar.Image style={style.avatar} size={134} source={AvatarImg} />
       <TouchableOpacity style={styles.botaoFoto} onPress= {() => EscolherFoto() }>
 					<Text style= {styles.textoBotao}>Escolher foto</Text>
 			</TouchableOpacity>
 
       <TextInput
-            style={styles.input}
+            style={style.input}
             mode='outlined'
             disabled
             outlineColor='#ECEBEA'
@@ -69,7 +70,7 @@ export default function MeuPerfil({ navigation }) {
           />
 
       <TextInput
-            style={styles.input}
+            style={style.input}
             mode='outlined'
             disabled
             outlineColor='#ECEBEA'
@@ -80,7 +81,7 @@ export default function MeuPerfil({ navigation }) {
           />
         
           <TextInput
-            style={styles.input}
+            style={style.input}
             mode='outlined'
             outlineColor='#ECEBEA'
             activeOutlineColor='#DB652F'
@@ -90,7 +91,7 @@ export default function MeuPerfil({ navigation }) {
           />
 
           <TextInput
-            style={styles.input}
+            style={style.input}
             mode='outlined'
             outlineColor='#ECEBEA'
             activeOutlineColor='#DB652F'
@@ -117,7 +118,7 @@ export default function MeuPerfil({ navigation }) {
           />
 
           <TextInput
-            style={styles.input}
+            style={style.input}
             mode='outlined'
             outlineColor='#ECEBEA'
             activeOutlineColor='#DB652F'
@@ -127,7 +128,7 @@ export default function MeuPerfil({ navigation }) {
           />
 
           <TextInput
-            style={styles.input}
+            style={style.input}
             mode='outlined'
             outlineColor='#ECEBEA'
             activeOutlineColor='#DB652F'
@@ -201,15 +202,6 @@ bg:{
   flexGrow: 1,
   alignItems: 'center',
 },
-appbar: {
-  height:10,
-  backgroundColor: 'white',
-  marginBottom:25,
-},
-avatar: {
-  marginBottom: 34,
-  alignSelf: 'center',
-},
 title: {
   fontWeight: 'bold',
   fontSize: 24,
@@ -233,28 +225,11 @@ QuestionImg: {
   alignSelf: 'center',
   marginTop:1,
 },
-pets: {
-  display: 'flex',
-  alignSelf: 'center',
-  width: 310,
-  height: 165,
-  
-},
-input: {
-  marginBottom: 15,
-  width:310,
-  borderRadius:'10',
-  alignSelf: 'center',
-  backgroundColor:'#E7E6E5',
-  fontsize:14, 
-},
-
 containerBotao: {
   flexDirection: 'row',
   justifyContent: 'space-around',
   flexWrap: 'wrap',
 },
-
 botaoSalvar: {
   width:250, 
   alignSelf: 'center',
@@ -328,12 +303,6 @@ CriarConta:{
   fontWeight:'bold',
   color: '#DB652F',
   marginBottom:20,
-},
-
-Conta:{
-  marginBottom:15,
-  alignSelf:'center',
-  color:'#837F7F',
 },
 
 Semlogin:{
