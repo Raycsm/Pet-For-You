@@ -14,7 +14,6 @@ const style = StyleSheet.create({
         marginBottom: 10,
         alignSelf: "center",
         alignContent: "center",
-        display: visible
     },
     botao: {
         width:310, 
