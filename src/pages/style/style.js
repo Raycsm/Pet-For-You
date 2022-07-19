@@ -1,12 +1,12 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from "react-native";
 import * as React from "react";
 
 const style = StyleSheet.create({
-	appbar: {
-		height:10,
-		backgroundColor: 'white',
-		marginBottom:25,
-	},
+    appbar: {
+        height: 10,
+        backgroundColor: 'white',
+        marginBottom: 25,
+    },
     avatar: {
         alignItems: "center",
         justifycontent: "center",
@@ -16,63 +16,63 @@ const style = StyleSheet.create({
         alignContent: "center",
     },
     botao: {
-        width:310, 
+        width: 310,
         alignSelf: 'center',
         marginBottom: 30,
         width: '80%',
         padding: 8,
-        textAlign:'center',
+        textAlign: 'center',
         borderRadius: 40,
-        marginTop:20,
+        marginTop: 20,
         backgroundColor: '#DB652F',
     },
     conteudo: {
-		backgroundColor: 'white',
-	},
-    conta:{
-		marginBottom:15,
-		alignSelf:'center',
-		color:'#837F7F',
-		marginBottom:100,
-	},
-	content: {
-		display: "flex",
-		flex: 1,
-        // alignItems: "center",
-		// justifyContent: "center",
-		// flexDirection: "row",
-		// backgroundColor: 'black',
-	},
-	input: {
+        backgroundColor: 'white',
+    },
+    conta: {
         marginBottom: 15,
-        width:310,
-        borderRadius:'10',
         alignSelf: 'center',
-        backgroundColor:'#E7E6E5',
-        fontSize:14, 
-      },
-	logo: {
-		width: 200,
-		height: 150,
-		display: 'flex',
-		alignSelf: 'center',
-		marginTop: 60,
-		marginBottom: 40,
-	},
-	tipopessoa: {
-		marginBottom: 10,
-		width: 310,
-		alignSelf: 'center',
-		fontsize: 14,
-		backgroundColor: '#E7E6E5',
-	},
-	itens: {
-		marginBottom: 10,
-		width: 310,
-		alignSelf: 'center',
-		fontsize: 14,
-		backgroundColor: '#C3C3C3',
-	},
+        color: '#837F7F',
+        marginBottom: 100,
+    },
+    content: {
+        display: "flex",
+        flex: 1,
+        // alignItems: "center",
+        // justifyContent: "center",
+        // flexDirection: "row",
+        // backgroundColor: 'black',
+    },
+    input: {
+        marginBottom: 15,
+        width: 310,
+        borderRadius: '10',
+        alignSelf: 'center',
+        backgroundColor: '#E7E6E5',
+        fontSize: 14,
+    },
+    logo: {
+        width: 200,
+        height: 150,
+        display: 'flex',
+        alignSelf: 'center',
+        marginTop: 60,
+        marginBottom: 40,
+    },
+    tipopessoa: {
+        marginBottom: 10,
+        width: 310,
+        alignSelf: 'center',
+        fontsize: 14,
+        backgroundColor: '#E7E6E5',
+    },
+    itens: {
+        marginBottom: 10,
+        width: 310,
+        alignSelf: 'center',
+        fontsize: 14,
+        backgroundColor: '#C3C3C3',
+    },
     elements: {
         margin: 10,
     },
@@ -95,7 +95,16 @@ const style = StyleSheet.create({
         alignSelf: 'center',
         width: 310,
         height: 165,
-      },
+    },
+    grid: {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+        gridGap: "10px",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "10px",
+        padding: "10px",
+    },
 });
 
 export default style;
