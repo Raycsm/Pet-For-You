@@ -3,6 +3,8 @@ import { Text, Button, TextInput, List, Appbar, Avatar} from "react-native-paper
 import { ScrollView, StyleSheet, Image, TouchableOpacity } from "react-native";
 import axios from "axios";
 import { SafeAreaView } from "react-native-safe-area-context";
+import style from "./style/style";
+import theme from "./style/theme";
 
 export default function CriarConta({ navigation }) {
 	const [tipopessoa, seTipoppessoa] = React.useState("");
@@ -20,39 +22,32 @@ export default function CriarConta({ navigation }) {
 
 	const [ShowPassword, setShowPassword] = React.useState(true)
 
-	const theme = {
-		colors: {
-			primary: "#db652f",
-			secondary: "#db652f",
-			terticiary: "#db652f",
-		}
-	}
 	return (
-		<SafeAreaView style={container.conteudo}>
-			<Appbar.Header style={container.appbar}>
+		<SafeAreaView style={style.conteudo}>
+			<Appbar.Header style={style.appbar}>
                 <Appbar.BackAction onPress={() => {navigation.navigate("Login")}} />
             </Appbar.Header>
 			<ScrollView>
 
-				<Image style={container.logo} source={require('../../assets/logo.png')}/>
+				<Image style={style.logo} source={require('../../assets/logo.png')}/>
 				
-				<Avatar.Image style={container.avatar} size = {120} source={require('../../assets/avatar.png')} />
+				<Avatar.Image style={style.avatar} size = {120} source={require('../../assets/avatar.png')} />
 
 				<TouchableOpacity style={container.botaoFoto} onPress= {() => EscolherFoto() }>
 					<Text style= {container.textoBotao}>Escolher foto</Text>
 				</TouchableOpacity> 
 					
-				<List.Accordion theme = {theme}
-					style={container.tipopessoa}
+				<List.Accordion theme = {theme.colors}
+					style={style.tipopessoa}
 					title={tipopessoa === "" ? "Tipo de pessoa" : tipopessoa}
 					left={props => <List.Icon {...props} icon="account-multiple" />}
 					onPress={handlePress}>
-					<List.Item style={container.itens}
+					<List.Item style={style.itens}
 						title="Pessoa Física"
 						left={props => <List.Icon {...props} icon="account"/>}
 						onPress={() => seTipoppessoa("Pessoa Física")}
 					/>
-					<List.Item style={container.itens}
+					<List.Item style={style.itens}
 						title="Pessoa Jurídica"
 						left={props => <List.Icon {...props} icon="account-multiple" />}
 						outlineColor='#ECEBEA'
@@ -69,7 +64,7 @@ export default function CriarConta({ navigation }) {
 						label="CPF"
 						value={cpf}
 						onChangeText={setCpf}
-						style={container.input}
+						style={style.input}
 					/>
 				)
 				}
@@ -82,7 +77,7 @@ export default function CriarConta({ navigation }) {
 						label="CNPJ"
 						value={cnpj}
 						onChangeText={setCnpj}
-						style={container.input}
+						style={style.input}
 					/>
 				)}
 				<TextInput label="Nome"
@@ -98,14 +93,14 @@ export default function CriarConta({ navigation }) {
 					outlineColor='#ECEBEA'
 					activeOutlineColor='#DB652F'
 					value={endereco}
-					style={container.input}
+					style={style.input}
 					onChangeText={endereco => setEndereco(endereco)} />
 
 				<TextInput label="Telefone"
 					mode='outlined'
 					outlineColor='#ECEBEA'
 					activeOutlineColor='#DB652F'
-					style={container.input}
+					style={style.input}
 					value={telefone}
 					onChangeText={telefone => setTelefone(telefone)} />
 
@@ -113,7 +108,7 @@ export default function CriarConta({ navigation }) {
 					mode='outlined'
 					outlineColor='#ECEBEA'
 					activeOutlineColor='#DB652F'
-					style={container.input}
+					style={style.input}
 					value={email}
 					onChangeText={email => setEmail(email)} />
 
@@ -121,7 +116,7 @@ export default function CriarConta({ navigation }) {
 					mode='outlined'
 					outlineColor='#ECEBEA'
 					activeOutlineColor='#DB652F'
-					style={container.input}
+					style={style.input}
 					secureTextEntry={ShowPassword}
 					right={
 						ShowPassword ?
@@ -146,7 +141,7 @@ export default function CriarConta({ navigation }) {
 					mode='outlined'
 					outlineColor='#ECEBEA'
 					activeOutlineColor='#DB652F'
-					style={container.input}
+					style={style.input}
 					secureTextEntry={ShowPassword}
 					right={
 						ShowPassword ?
@@ -167,7 +162,7 @@ export default function CriarConta({ navigation }) {
 					value={confirmarsenha}
 					onChangeText={confirmarsenha => setConfirmarsenha(confirmarsenha)} />
             	
-				<Button style={container.botao}
+				<Button style={style.botao}
 					mode="contained" onPress={
 						() => {
 							if (senha === confirmarsenha) {
@@ -222,7 +217,7 @@ export default function CriarConta({ navigation }) {
 					Cadastrar
 				</Button>
 				<TouchableOpacity onPress={() => navigation.navigate("Login")}>
-					<Text style = {container.Conta}>
+					<Text style = {style.conta}>
 						Já possui uma conta? <Text style={container.FacaLogin}>Faça login</Text>
 					</Text>
 				</TouchableOpacity>
@@ -232,18 +227,6 @@ export default function CriarConta({ navigation }) {
 }
 
 const container = StyleSheet.create({
-	conteudo: {
-		backgroundColor: 'white',
-	},
-	appbar: {
-		height:10,
-		backgroundColor: 'white',
-		marginBottom:25,
-	},
-	avatar:{
-		alignSelf:'center',
-		marginBottom:10,	
-	},
 	botaoFoto:{
 		width: 120,
 		height: 35,
@@ -257,14 +240,6 @@ const container = StyleSheet.create({
 	textoBotao:{
 		color:"#fff",
 	},
-	input: {
-		marginBottom: 10,
-		width: 310,
-		alignSelf: 'center',
-		outlineColor: 'black',
-		fontsize: 14,
-		backgroundColor:'#E7E6E5',
-	},
 	logo: {
 		width: 120,
 		height: 90,
@@ -273,41 +248,9 @@ const container = StyleSheet.create({
 		marginTop: 10,
 		marginBottom: 20,
 	},
-	tipopessoa: {
-		marginBottom: 10,
-		width: 310,
-		alignSelf: 'center',
-		fontsize: 14,
-		backgroundColor: '#E7E6E5',
-	},
 	FacaLogin:{
 		fontWeight:'bold',
 		color: '#DB652F',
 		marginBottom:20,
 	},
-	  Conta:{
-		marginBottom:15,
-		alignSelf:'center',
-		color:'#837F7F',
-		marginBottom:100,
-	},
-	itens: {
-		marginBottom: 10,
-		width: 310,
-		alignSelf: 'center',
-		fontsize: 14,
-		backgroundColor: '#C3C3C3',
-	},
-
-	botao: {
-		width: 310,
-		alignSelf: 'center',
-		marginBottom: 20,
-		width: '80%',
-		padding: 8,
-		textAlign: 'center',
-		borderRadius: 40,
-		backgroundColor: '#DB652F',
-		marginTop:20,
-	}
 });
