@@ -1,7 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
-
 import Login from '../pages/Login';
 import CriarConta from '../pages/CriarConta';
 import EsqueciSenha from '../pages/EsqueciSenha';
@@ -12,6 +11,7 @@ import SobreNos from '../pages/SobreNos';
 import Chat from '../pages/Chat';
 import Adocao from '../pages/Adocao';
 import PetsFavoritos from '../pages/PetsFavoritos';
+
 import ShowBottomTabs from "./BottomTabs";
 
 
