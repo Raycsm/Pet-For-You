@@ -1,4 +1,3 @@
-import { StyleSheet } from "react-native";
 import * as React from "react";
 
 const theme = {
@@ -7,6 +6,7 @@ const theme = {
         primary: "#db652f",
         secondary: "#db652f",
         terticiary: "#db652f",
+        tintColor: 'white'
     }
 };
 
