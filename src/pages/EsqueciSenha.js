@@ -15,7 +15,7 @@ export default function Login({ navigation }) {
 
   return (
     <View>
-      <Image style={styles.logo} source={require('../../assets/logo.png')} />
+      <Image style={style.logo} source={require('../../assets/logo.png')} />
 
       <Text style={{
         alignSelf: 'center',
@@ -61,15 +61,3 @@ export default function Login({ navigation }) {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-
-  logo: {
-    width: 200,
-    height: 150,
-    display: 'flex',
-    alignSelf: 'center',
-    marginTop: 60,
-    marginBottom: 40,
-  },
-});

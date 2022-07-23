@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
-import { Card, Button, ToggleButton, TextInput, Text, List, Avatar } from "react-native-paper";
+import { Button, ToggleButton, TextInput, Text, List, Avatar } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 /* import { Navigationstyle } from '@react-navigation/native';
@@ -50,37 +50,25 @@ function CriarPet({ navigation }) {
 		},
 	});
 
-	const style = StyleSheet.create({
-		Avatar: {
-			alignItems: "center",
-			justifycontent: "center",
-			marginTop: 10,
-			marginBottom: 10,
-			alignSelf: "center",
-			alignContent: "center",
-			display: visible
-		},
-	});
-
 	return (
 		<SafeAreaView style={scrollView.style}>
 			<ScrollView>
 				<Text style={style.text}>Foto do pet</Text>
 				<TouchableOpacity onPress={pegarImagem}>
 					<Avatar.Icon size={120} icon="camera-outline" theme={theme.colors}
-						style={style.Avatar} />
+						style={style.avatar} />
 				</TouchableOpacity>
 				{foto ? <View style={style.elementscenter}>
 					<Avatar.Image size={120} source={{ uri: foto }} /> </View> : null}
 				<TextInput label="Nome*"
-					theme={theme}
+					theme={theme.colors}
 					style={style.elements}
 					value={nome}
 					onChangeText={nome => setNome(nome)} />
 				<TextInput label="Localização*"
 					value={localizacao}
 					style={style.elements}
-					theme={theme}
+					theme={theme.colors}
 					onChangeText={localizacao => setLocalizacao(localizacao)} />
 				<Text style={style.text}>Sexo*</Text>
 				<ToggleButton.Row
@@ -99,7 +87,7 @@ function CriarPet({ navigation }) {
 				<List.Accordion
 					title={tipo}
 					style={style.elements}
-					theme={theme}
+					theme={theme.colors}
 					left={props => <List.Icon {...props} icon="paw" />}>
 					<List.Item title="Cachorro"
 						onPress={() => setTipo("Cachorro")} />
@@ -112,7 +100,7 @@ function CriarPet({ navigation }) {
 					<>
 						<List.Accordion
 							title={raca}
-							theme={theme}
+							theme={theme.colors}
 							style={style.elements}
 							left={props => <List.Icon {...props} icon="dog" />}
 						>
@@ -131,7 +119,7 @@ function CriarPet({ navigation }) {
 					<>
 						<List.Accordion
 							title={raca}
-							theme={theme}
+							theme={theme.colors}
 							style={style.elements}
 							left={props => <List.Icon {...props} icon="cat" />}
 						>
@@ -150,7 +138,7 @@ function CriarPet({ navigation }) {
 					<>
 						<List.Accordion
 							title={raca}
-							theme={theme}
+							theme={theme.colors}
 							style={style.elements}
 							left={props => <List.Icon {...props} icon="rabbit" />}
 						>
@@ -170,21 +158,21 @@ function CriarPet({ navigation }) {
 						<TextInput label="Anos"
 							style={style.elements}
 							value={anos}
-							theme={theme}
+							theme={theme.colors}
 							onChangeText={anos => setAnos(anos)} />
 					</View>
 					<View style={{ flex: 1 }}>
 						<TextInput label="Meses"
 							style={style.elements}
 							value={meses}
-							theme={theme}
+							theme={theme.colors}
 							onChangeText={meses => setMeses(meses)} />
 					</View>
 				</View>
 				<List.Accordion
 					title={peso}
 					style={style.elements}
-					theme={theme}
+					theme={theme.colors}
 					left={props => <List.Icon {...props} icon="weight" />}>
 					<List.Item title="2-5 kg"
 						onPress={() => setPeso("2-5 kg")} />
@@ -196,7 +184,7 @@ function CriarPet({ navigation }) {
 				<List.Accordion
 					title={porte}
 					style={style.elements}
-					theme={theme}
+					theme={theme.colors}
 					left={props => <List.Icon {...props} icon="dog-side" />}>
 					<List.Item title="Pequeno"
 						onPress={() => setPorte("Pequeno")} />
@@ -233,15 +221,15 @@ function CriarPet({ navigation }) {
 						value="false"
 					/>
 				</ToggleButton.Row>
-				<TextInput label="Telefone" theme={theme}
+				<TextInput label="Telefone" theme={theme.colors}
 					style={style.elements}
 					value={telefone}
 					onChangeText={telefone => setTelefone(telefone)} />
-				<TextInput label="Email" theme={theme}
+				<TextInput label="Email" theme={theme.colors}
 					style={style.elements}
 					value={email}
 					onChangeText={email => setEmail(email)} />
-				<TextInput label="Descrição*" theme={theme}
+				<TextInput label="Descrição*" theme={theme.colors}
 					style={style.elements}
 					multiline={true}
 					numberOfLines={5}
@@ -249,7 +237,7 @@ function CriarPet({ navigation }) {
 					onChangeText={descricao => setDescricao(descricao)} />
 				<Button
 					style={style.botao}
-					theme = { theme }
+					theme = {theme.colors}
 					mode="contained"
 					onPress={() => {
 						if (nome === "" || raca === "" || peso === "" || porte === "" || descricao === "" || telefone === "" || email === "") {
